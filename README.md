@@ -1,6 +1,18 @@
 # AI Agent with Azure API Management & Azure AI Search
 
-This enterprise-ready solution deploys an AI-powered API gateway that combines Azure API Management, Azure AI Services, and Azure AI Search to create a production-grade conversational AI platform with enterprise security, rate limiting, and intelligent knowledge retrieval.
+This enterprise-ready solution deploys an AI-powered API gateway that combines Azure API Management, Azure AI Services, and Azure AI Search to create a production-grade conversational AI platform with enterprise securit- **Azure Container App**  
+  Consumption tier with 0.5 CPU, 1GiB memory/storage. Pricing is based on resource allocation, and each month allows for a certain amount of free usage. [Pricing](https://azure.microsoft.com/pricing/details/container-apps/)
+
+- **Log analytics**  
+  Pay-as-you-go tier. Costs based on data ingested. [Pricing](https://azure.microsoft.com/pricing/details/monitor/)
+
+- **Agent Evaluations**  
+  Incurs the cost of your provided model deployment used for local evaluations.
+
+- **AI Red Teaming Agent**  
+  Leverages Azure AI Risk and Safety Evaluations to assess attack success from the automated AI red teaming scan. Users are billed based on the consumption of Risk and Safety Evaluations as listed in [our Azure pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/). Click on the tab labeled "Complete AI Toolchain" to view the pricing details.te limiting, and intelligent knowledge retrieval.
+
+---
 
 ## Table of Contents
 
@@ -13,27 +25,51 @@ This enterprise-ready solution deploys an AI-powered API gateway that combines A
 - [Guidance](#guidance)
 - [Troubleshooting](#troubleshooting)
 
+---
+
 ## Solution Overview
 
 This solution deploys an **enterprise-grade AI-powered API gateway** that combines Azure API Management (APIM) with Azure AI Services and Azure AI Search to create a production-ready conversational AI platform.
 
-The solution leverages **Azure AI Agent service** integrated with **Azure AI Search** for intelligent knowledge retrieval from uploaded files, enabling it to generate contextually-aware responses with citations. The API gateway provides enterprise-level security, rate limiting, and monitoring capabilities while the AI agent delivers intelligent search-enhanced responses.
+The solution leverages **Azure AI Agent service** integrated with **Azure AI Search** for intelligent knowledge retrieval from uploaded files, enabling it to generate contextually-aware responses with citations. 
+
+The API gateway provides enterprise-level security, rate limiting, and monitoring capabilities while the AI agent delivers intelligent search-enhanced responses.
 
 ### 🚀 Enterprise Features
 
-- **🔐 API Gateway Security**: Subscription key authentication and rate limiting (100 calls/min, 1000 calls/hour)
-- **🔍 Intelligent Search**: Azure AI Search with semantic search and vector embeddings for enhanced RAG capabilities  
-- **⚡ High Performance**: Container Apps with auto-scaling and managed identity for secure Azure service access
-- **📊 Complete Monitoring**: Application Insights integration with request tracing and performance metrics
-- **🏢 Production Ready**: Enterprise-grade architecture with proper security, scaling, and governance
+- **🔐 API Gateway Security**  
+  Subscription key authentication and rate limiting (100 calls/min, 1000 calls/hour)
+
+- **🔍 Intelligent Search**  
+  Azure AI Search with semantic search and vector embeddings for enhanced RAG capabilities
+
+- **⚡ High Performance**  
+  Container Apps with auto-scaling and managed identity for secure Azure service access
+
+- **📊 Complete Monitoring**  
+  Application Insights integration with request tracing and performance metrics
+
+- **🏢 Production Ready**  
+  Enterprise-grade architecture with proper security, scaling, and governance
 
 ### 🎯 Key Capabilities
 
-- **RAG-Enhanced AI Responses**: Combines Azure AI Search results with GPT-4o-mini for contextually-aware answers
-- **Enterprise API Management**: Full APIM integration with subscription management, rate limiting, and request transformation
-- **Secure Authentication**: API key-based access control with Azure managed identity for backend services
-- **Scalable Architecture**: Container Apps deployment with automatic scaling based on demand
-- **Rich Data Sources**: Support for product information, customer data, and custom document uploads
+- **RAG-Enhanced AI Responses**  
+  Combines Azure AI Search results with GPT-4o-mini for contextually-aware answers
+
+- **Enterprise API Management**  
+  Full APIM integration with subscription management, rate limiting, and request transformation
+
+- **Secure Authentication**  
+  API key-based access control with Azure managed identity for backend services
+
+- **Scalable Architecture**  
+  Container Apps deployment with automatic scaling based on demand
+
+- **Rich Data Sources**  
+  Support for product information, customer data, and custom document uploads
+
+---
 
 ## Architecture
 
@@ -58,12 +94,23 @@ graph TB
 
 ### Request Flow
 
-1. **Client Request** → APIM Gateway validates subscription key and applies rate limits
-2. **APIM Processing** → Request transformation, logging, and routing to Container App  
-3. **AI Agent Processing** → FastAPI receives request and queries Azure AI Search for context
-4. **RAG Enhancement** → Search results combined with user query for AI processing
-5. **AI Response** → GPT-4o-mini generates contextually-aware response using retrieved knowledge
-6. **Response Delivery** → Formatted response returned through APIM to client
+1. **Client Request**  
+   APIM Gateway validates subscription key and applies rate limits
+
+2. **APIM Processing**  
+   Request transformation, logging, and routing to Container App
+
+3. **AI Agent Processing**  
+   FastAPI receives request and queries Azure AI Search for context
+
+4. **RAG Enhancement**  
+   Search results combined with user query for AI processing
+
+5. **AI Response**  
+   GPT-4o-mini generates contextually-aware response using retrieved knowledge
+
+6. **Response Delivery**  
+   Formatted response returned through APIM to client
 
 ### Key Features
 
@@ -100,6 +147,8 @@ Here is a screenshot showing the chatting web application with requests and resp
 
 ![Screenshot of chatting web application showing requests and responses between agent and the user.](docs/images/webapp_screenshot.png)
 
+---
+
 ## Getting Started
 
 ### Quick Deploy
@@ -108,9 +157,13 @@ Here is a screenshot showing the chatting web application with requests and resp
 |---|---|
 | [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/vinod-soni-microsoft/get-started-with-ai-agents-with-apim) | [![Open in Dev Containers](https://img.shields.io/static/v1?style=for-the-badge&label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/vinod-soni-microsoft/get-started-with-ai-agents-with-apim) |
 
-GitHub Codespaces and Dev Containers both allow you to download and deploy the code for development. You can also continue with local development. Once you have selected your environment, [click here to launch the development and deployment guide](./docs/deployment.md)
+GitHub Codespaces and Dev Containers both allow you to download and deploy the code for development. You can also continue with local development. 
+
+Once you have selected your environment, [click here to launch the development and deployment guide](./docs/deployment.md)
 
 **After deployment, try these [sample questions](./docs/sample_questions.md) to test your agent.**
+
+---
 
 ## API Endpoints
 
@@ -167,36 +220,46 @@ curl -X POST "https://apim-{resourceToken}.azure-api.net/aiagent/chat" \
 3. Find your subscription and click **Show/hide keys**
 4. Copy the **Primary key** for API authentication
 
+---
+4. Copy the **Primary key** for API authentication
+
 
 ## Other Features
 
 Once you have the agents and the web app working, you are encouraged to try one of the following:
 
-- **[Tracing and Monitoring](./docs/other_features.md#tracing-and-monitoring)** - View console logs in Azure portal and App Insights tracing in Azure AI Foundry for debugging and performance monitoring.
+- **[Tracing and Monitoring](./docs/other_features.md#tracing-and-monitoring)**  
+  View console logs in Azure portal and App Insights tracing in Azure AI Foundry for debugging and performance monitoring.
 
-- **[Agent Evaluation](./docs/other_features.md#agent-evaluation)** - Evaluate your agent's performance and quality using built-in evaluators for local development, continuous monitoring, and CI/CD integration.
+- **[Agent Evaluation](./docs/other_features.md#agent-evaluation)**  
+  Evaluate your agent's performance and quality using built-in evaluators for local development, continuous monitoring, and CI/CD integration.
 
-- **[AI Red Teaming Agent](./docs/other_features.md#ai-red-teaming-agent)** - Run automated security and safety scans on your agent solution to check your risk posture before production deployment.
+- **[AI Red Teaming Agent](./docs/other_features.md#ai-red-teaming-agent)**  
+  Run automated security and safety scans on your agent solution to check your risk posture before production deployment.
+
+---
 
 ## Resource Clean-up
 
 To prevent incurring unnecessary charges, it's important to clean up your Azure resources after completing your work with the application.
 
-- **When to Clean Up:**
-  - After you have finished testing or demonstrating the application.
-  - If the application is no longer needed or you have transitioned to a different project or environment.
-  - When you have completed development and are ready to decommission the application.
+### When to Clean Up:
+- After you have finished testing or demonstrating the application
+- If the application is no longer needed or you have transitioned to a different project or environment  
+- When you have completed development and are ready to decommission the application
 
-- **Deleting Resources:**  
-  To delete all associated resources and shut down the application, execute the following command:
-  
-  ```bash
-  azd down
-  ```
+### Deleting Resources:
+To delete all associated resources and shut down the application, execute the following command:
 
-  Please note that this process may take up to 20 minutes to complete.
+```bash
+azd down
+```
+
+Please note that this process may take up to 20 minutes to complete.
 
 ⚠️ **Alternative:** You can delete the resource group directly from the Azure Portal to clean up resources.
+
+---
 
 ## Guidance
 
@@ -207,12 +270,23 @@ The majority of the Azure resources used in this infrastructure are on usage-bas
 
 You can try the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator) for the resources:
 
-- **Azure API Management**: Developer tier. [Pricing](https://azure.microsoft.com/pricing/details/api-management/)
-- **Azure AI Search**: Basic tier with semantic search (free). [Pricing](https://azure.microsoft.com/pricing/details/search/)
-- **Azure AI Foundry**: Free tier. [Pricing](https://azure.microsoft.com/pricing/details/ai-studio/)  
-- **Azure Storage Account**: Standard tier, LRS. Pricing is based on storage and operations. [Pricing](https://azure.microsoft.com/pricing/details/storage/blobs/)  
-- **Azure AI Services**: S0 tier, defaults to gpt-4o-mini. Pricing is based on token count. [Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)  
-- **Azure Container App**: Consumption tier with 0.5 CPU, 1GiB memory/storage. Pricing is based on resource allocation, and each month allows for a certain amount of free usage. [Pricing](https://azure.microsoft.com/pricing/details/container-apps/)  
+- **Azure API Management**  
+  Developer tier. [Pricing](https://azure.microsoft.com/pricing/details/api-management/)
+
+- **Azure AI Search**  
+  Basic tier with semantic search (free). [Pricing](https://azure.microsoft.com/pricing/details/search/)
+
+- **Azure AI Foundry**  
+  Free tier. [Pricing](https://azure.microsoft.com/pricing/details/ai-studio/)
+
+- **Azure Storage Account**  
+  Standard tier, LRS. Pricing is based on storage and operations. [Pricing](https://azure.microsoft.com/pricing/details/storage/blobs/)
+
+- **Azure AI Services**  
+  S0 tier, defaults to gpt-4o-mini. Pricing is based on token count. [Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)
+
+- **Azure Container App**  
+  Consumption tier with 0.5 CPU, 1GiB memory/storage. Pricing is based on resource allocation, and each month allows for a certain amount of free usage. [Pricing](https://azure.microsoft.com/pricing/details/container-apps/)  
 - **Log analytics**: Pay-as-you-go tier. Costs based on data ingested. [Pricing](https://azure.microsoft.com/pricing/details/monitor/)  
 - **Agent Evaluations**: Incurs the cost of your provided model deployment used for local evaluations.  
 - **AI Red Teaming Agent**: Leverages Azure AI Risk and Safety Evaluations to assess attack success from the automated AI red teaming scan. Users are billed based on the consumption of Risk and Safety Evaluations as listed in [our Azure pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/). Click on the tab labeled “Complete AI Toolchain” to view the pricing details.
@@ -251,6 +325,8 @@ This template creates a complete enterprise AI platform with the following Azure
 | [Storage Account](https://learn.microsoft.com/azure/storage/blobs/) | **Data Storage** - Provides blob storage for application data, file uploads, and AI model artifacts | • Blob storage<br/>• File shares<br/>• Queue storage<br/>• Table storage |
 | [Application Insights](https://learn.microsoft.com/azure/azure-monitor/app/app-insights-overview) | **APM & Monitoring** - Application performance monitoring, logging, and telemetry for debugging | • Request tracing<br/>• Performance metrics<br/>• Error tracking<br/>• Custom telemetry |
 | [Log Analytics Workspace](https://learn.microsoft.com/azure/azure-monitor/logs/log-analytics-workspace-overview) | **Centralized Logging** - Collects and analyzes telemetry data for monitoring and troubleshooting | • Centralized logging<br/>• Query capabilities (KQL)<br/>• Alerting<br/>• Dashboard integration |
+
+---
 
 ## Troubleshooting
 
