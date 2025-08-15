@@ -1,6 +1,6 @@
 # AI Agent with Azure API Management & Azure AI Search
 
-This enterprise-ready solution deploys an AI-powered API gateway that combines Azure API Management, Azure AI Services, and Azure AI Search to create a production-grade conversational AI platform with enterprise security, rate limiting, and intellBY ACCESSING OR USING THE SOFTWARE, YOU ACKNOWLEDGE THAT THE SOFTWARE IS NOT DESIGNED OR INTENDED TO SUPPORT ANY USE IN WHICH A SERVICE INTERRUPTION, DEFECT, ERROR, OR OTHER FAILURE OF THE SOFTWARE COULD RESULT IN THE DEATH OR SERIOUS BODILY INJURY OF ANY PERSON OR IN PHYSICAL OR ENVIRONMENTAL DAMAGE (COLLECTIVELY, "HIGH-RISK USE"), AND THAT YOU WILL ENSURE THAT, IN THE EVENT OF ANY INTERRUPTION, DEFECT, ERROR, OR OTHER FAILURE OF THE SOFTWARE, THE SAFETY OF PEOPLE, PROPERTY, AND THE ENVIRONMENT ARE NOT REDUCED BELOW A LEVEL THAT IS REASONABLY, APPROPRIATE, AND LEGAL, WHETHER IN GENERAL OR IN A SPECIFIC INDUSTRY. BY ACCESSING THE SOFTWARE, YOU FURTHER ACKNOWLEDGE THAT YOUR HIGH-RISK USE OF THE SOFTWARE IS AT YOUR OWN RISK.gent knowledge retrieval.
+This enterprise-ready solution deploys an AI-powered API gateway that combines Azure API Management, Azure AI Services, and Azure AI Search to create a production-grade conversational AI platform with enterprise security, rate limiting, and intelligent knowledge retrieval.
 
 ---
 
@@ -62,29 +62,29 @@ graph TB
 
 ### Key Features
 
-- **🔐 Enterprise API Gateway**<br/>
-Azure API Management provides enterprise-grade security with subscription key authentication, rate limiting (100 calls/min, 1000 calls/hour), request transformation, and comprehensive monitoring.
+- **🔐 Enterprise API Gateway**  
+  Azure API Management provides enterprise-grade security with subscription key authentication, rate limiting (100 calls/min, 1000 calls/hour), request transformation, and comprehensive monitoring.
 
-- **🔍 Enhanced Knowledge Retrieval**<br/>
-Azure AI Search integration with semantic search capabilities, vector embeddings, and intelligent document retrieval for superior RAG (Retrieval-Augmented Generation) performance.
+- **🔍 Enhanced Knowledge Retrieval**  
+  Azure AI Search integration with semantic search capabilities, vector embeddings, and intelligent document retrieval for superior RAG (Retrieval-Augmented Generation) performance.
 
-- **⚡ High-Performance AI Models**<br/>
-Optimized GPT-4o-mini deployment with customizable capacity and text-embedding-3-small for vector search, providing fast and cost-effective AI responses.
+- **⚡ High-Performance AI Models**  
+  Optimized GPT-4o-mini deployment with customizable capacity and text-embedding-3-small for vector search, providing fast and cost-effective AI responses.
 
-- **🏗️ Production-Ready Architecture**<br/>
-Container Apps deployment with auto-scaling, managed identity security, private networking, and enterprise-grade monitoring and observability.
+- **🏗️ Production-Ready Architecture**  
+  Container Apps deployment with auto-scaling, managed identity security, private networking, and enterprise-grade monitoring and observability.
 
-- **📊 Complete Observability**<br/>
-Integrated Application Insights, Log Analytics, health checks, and APIM analytics for comprehensive monitoring, debugging, and performance optimization.
+- **📊 Complete Observability**  
+  Integrated Application Insights, Log Analytics, health checks, and APIM analytics for comprehensive monitoring, debugging, and performance optimization.
 
-- **🔄 CI/CD Ready**<br/>
-Azure Developer CLI (azd) integration with GitHub Actions support, infrastructure as code with Bicep, and automated deployment pipelines.
+- **🔄 CI/CD Ready**  
+  Azure Developer CLI (azd) integration with GitHub Actions support, infrastructure as code with Bicep, and automated deployment pipelines.
 
-- **🛡️ Security & Compliance**<br/>
-Role-based access control (RBAC), managed identity for service-to-service authentication, network security, and enterprise security best practices.
+- **🛡️ Security & Compliance**  
+  Role-based access control (RBAC), managed identity for service-to-service authentication, network security, and enterprise security best practices.
 
-- **📈 Agent Evaluation & Testing**<br/>
-Built-in evaluation capabilities for agent performance monitoring and quality assurance during development and production.
+- **📈 Agent Evaluation & Testing**  
+  Built-in evaluation capabilities for agent performance monitoring and quality assurance during development and production.
 
 - **🔴 AI Red Teaming**  
   Automated security and safety scanning capabilities to assess risk posture before production deployment.
@@ -226,9 +226,10 @@ You may want to consider additional security measures, such as:
 - Enabling Microsoft Defender for Cloud to [secure your Azure resources](https://learn.microsoft.com/azure/defender-for-cloud/).
 - Protecting the Azure Container Apps instance with a [firewall](https://learn.microsoft.com/azure/container-apps/waf-app-gateway) and/or [Virtual Network](https://learn.microsoft.com/azure/container-apps/networking?tabs=workload-profiles-env%2Cazure-cli).
 
-> **Important Security Notice** <br/>
-This template, the application code and configuration it contains, has been built to showcase Microsoft Azure specific services and tools. We strongly advise our customers not to make this code part of their production environments without implementing or enabling additional security features.  <br/><br/>
-For a more comprehensive list of best practices and security recommendations for Intelligent Applications, [visit our official documentation](https://learn.microsoft.com/en-us/azure/ai-foundry/).
+> **Important Security Notice**  
+> This template, the application code and configuration it contains, has been built to showcase Microsoft Azure specific services and tools. We strongly advise our customers not to make this code part of their production environments without implementing or enabling additional security features.  
+>   
+> For a more comprehensive list of best practices and security recommendations for Intelligent Applications, [visit our official documentation](https://learn.microsoft.com/en-us/azure/ai-foundry/).
 
 ### Resources
 
