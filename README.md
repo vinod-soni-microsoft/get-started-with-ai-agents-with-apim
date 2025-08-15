@@ -1,48 +1,100 @@
-# Getting Started with Agents Using Azure AI Foundry
+# AI Agent with Azure API Management & Azure AI Search
 
-The agent leverages the Azure AI Agent service and utilizes file search for knowledge retrieval from uploaded files, enabling it to generate responses with citations. The solution also includes built-in monitoring capabilities with tracing to ensure easier troubleshooting and optimized performance.
+This enterprise-ready solution deploys an AI-powered API gateway that combines Azure API Management, Azure AI Services, and Azure AI Search to create a production-grade conversational AI platform with enterprise security, rate limiting, and intelligentBY ACCESSING OR USING THE SOFTWARE, YOU ACKNOWLEDGE THAT THE SOFTWARE IS NOT DESIGNED OR INTENDED TO SUPPORT ANY USE IN WHICH A SERVICE INTERRUPTION, DEFECT, ERROR, OR OTHER FAILURE OF THE SOFTWARE COULD RESULT IN THE DEATH OR SERIOUS BODILY INJURY OF ANY PERSON OR IN PHYSICAL OR ENVIRONMENTAL DAMAGE (COLLECTIVELY, "HIGH-RISK USE"), AND THAT YOU WILL ENSURE THAT, IN THE EVENT OF ANY INTERRUPTION, DEFECT, ERROR, OR OTHER FAILURE OF THE SOFTWARE, THE SAFETY OF PEOPLE, PROPERTY, AND THE ENVIRONMENT ARE NOT REDUCED BELOW A LEVEL THAT IS REASONABLY, APPROPRIATE, AND LEGAL, WHETHER IN GENERAL OR IN A SPECIFIC INDUSTRY. BY ACCESSING THE SOFTWARE, YOU FURTHER ACKNOWLEDGE THAT YOUR HIGH-RISK USE OF THE SOFTWARE IS AT YOUR OWN RISK.knowledge retrieval.
 
 <div style="text-align:center;">
 
-[**SOLUTION OVERVIEW**](#solution-overview) \| [**GETTING STARTED**](#getting-started)  \|  [**OTHER FEATURES**](#other-features) \| [**RESOURCE CLEAN-UP**](#resource-clean-up) \| [**GUIDANCE**](#guidance) \| [**TROUBLESHOOTING**](#troubleshooting)
+[**SOLUTION OVERVIEW**](#solution-overview) \| [**ARCHITECTURE**](#architecture) \| [**GETTING STARTED**](#getting-started) \| [**API ENDPOINTS**](#api-endpoints) \| [**OTHER FEATURES**](#other-features) \| [**RESOURCE CLEAN-UP**](#resource-clean-up) \| [**GUIDANCE**](#guidance) \| [**TROUBLESHOOTING**](#troubleshooting)
 
 </div>
 
 ## Solution Overview
 
-This solution deploys a web-based chat application with an AI agent running in Azure Container App.
+This solution deploys an **enterprise-grade AI-powered API gateway** that combines Azure API Management (APIM) with Azure AI Services and Azure AI Search to create a production-ready conversational AI platform.
 
-The agent leverages the Azure AI Agent service and utilizes Azure AI Search for knowledge retrieval from uploaded files, enabling it to generate responses with citations. The solution also includes built-in monitoring capabilities with tracing to ensure easier troubleshooting and optimized performance.
+The solution leverages **Azure AI Agent service** integrated with **Azure AI Search** for intelligent knowledge retrieval from uploaded files, enabling it to generate contextually-aware responses with citations. The API gateway provides enterprise-level security, rate limiting, and monitoring capabilities while the AI agent delivers intelligent search-enhanced responses.
 
-This solution creates an Azure AI Foundry project and Azure AI services. More details about the resources can be found in the [resources](#resources) documentation. There are options to enable logging, tracing, and monitoring.
+### 🚀 Enterprise Features
 
-Instructions are provided for deployment through GitHub Codespaces, VS Code Dev Containers, and your local development environment.
+- **🔐 API Gateway Security**: Subscription key authentication and rate limiting (100 calls/min, 1000 calls/hour)
+- **🔍 Intelligent Search**: Azure AI Search with semantic search and vector embeddings for enhanced RAG capabilities  
+- **⚡ High Performance**: Container Apps with auto-scaling and managed identity for secure Azure service access
+- **📊 Complete Monitoring**: Application Insights integration with request tracing and performance metrics
+- **🏢 Production Ready**: Enterprise-grade architecture with proper security, scaling, and governance
 
-### Solution Architecture
+### 🎯 Key Capabilities
 
-![Architecture diagram showing that user input is provided to the Azure Container App, which contains the app code. With user identity and resource access through managed identity, the input is used to form a response. The input and the Azure monitor are able to use the Azure resources deployed in the solution: Application Insights, Azure AI Foundry Project, Azure AI Services, Storage account, Azure Container App, and Log Analytics Workspace.](docs/images/architecture.png)
+- **RAG-Enhanced AI Responses**: Combines Azure AI Search results with GPT-4o-mini for contextually-aware answers
+- **Enterprise API Management**: Full APIM integration with subscription management, rate limiting, and request transformation
+- **Secure Authentication**: API key-based access control with Azure managed identity for backend services
+- **Scalable Architecture**: Container Apps deployment with automatic scaling based on demand
+- **Rich Data Sources**: Support for product information, customer data, and custom document uploads
 
-The app code runs in Azure Container App to process the user input and generate a response to the user. It leverages Azure AI projects and Azure AI services, including the model and agent.
+## Architecture
+
+### Enterprise API Gateway Architecture
+
+```
+┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
+│   External      │    │   Azure API      │    │   Container     │
+│   Clients       │───▶│   Management     │───▶│   App (FastAPI) │
+│                 │    │   (Gateway)      │    │                 │
+└─────────────────┘    └──────────────────┘    └─────────────────┘
+                              │                          │
+                              ▼                          ▼
+                       ┌─────────────┐           ┌─────────────┐
+                       │ Rate Limits │           │ Azure AI    │
+                       │ • 100/min   │           │ Services    │
+                       │ • 1000/hour │           │ (GPT-4o)    │
+                       └─────────────┘           └─────────────┘
+                                                         │
+                                                         ▼
+                                                ┌─────────────┐
+                                                │ Azure AI    │
+                                                │ Search      │
+                                                │ (RAG Data)  │
+                                                └─────────────┘
+```
+
+![Architecture diagram showing the complete AI agent solution with APIM gateway, featuring external clients connecting through Azure API Management to a Container App backend, which integrates with Azure AI Services and Azure AI Search for intelligent responses.](docs/images/architecture.png)
+
+### Request Flow
+
+1. **Client Request** → APIM Gateway validates subscription key and applies rate limits
+2. **APIM Processing** → Request transformation, logging, and routing to Container App  
+3. **AI Agent Processing** → FastAPI receives request and queries Azure AI Search for context
+4. **RAG Enhancement** → Search results combined with user query for AI processing
+5. **AI Response** → GPT-4o-mini generates contextually-aware response using retrieved knowledge
+6. **Response Delivery** → Formatted response returned through APIM to client
 
 ### Key Features
 
-- **Knowledge Retrieval**<br/>
-The AI agent uses file search to retrieve knowledge from uploaded files.
+- **🔐 Enterprise API Gateway**<br/>
+Azure API Management provides enterprise-grade security with subscription key authentication, rate limiting (100 calls/min, 1000 calls/hour), request transformation, and comprehensive monitoring.
 
-- **Customizable AI Model Deployment**<br/>
-The solution allows users to configure and deploy AI models, such as gpt-4o-mini, with options to adjust model capacity, and knowledge retrieval methods.
+- **🔍 Enhanced Knowledge Retrieval**<br/>
+Azure AI Search integration with semantic search capabilities, vector embeddings, and intelligent document retrieval for superior RAG (Retrieval-Augmented Generation) performance.
 
-- **Built-in Monitoring and Tracing**<br/>
-Integrated monitoring capabilities, including Azure Monitor and Application Insights, enable tracing and logging for easier troubleshooting and performance optimization.
+- **⚡ High-Performance AI Models**<br/>
+Optimized GPT-4o-mini deployment with customizable capacity and text-embedding-3-small for vector search, providing fast and cost-effective AI responses.
 
-- **Flexible Deployment Options**<br/>
-The solution supports deployment through GitHub Codespaces, VS Code Dev Containers, or local environments, providing flexibility for different development workflows.
+- **🏗️ Production-Ready Architecture**<br/>
+Container Apps deployment with auto-scaling, managed identity security, private networking, and enterprise-grade monitoring and observability.
 
-- **Agent Evaluation**<br/>
-This solution demonstrates how you can evaluate your agent's performance and quality during local development and incorporate it into monitoring and CI/CD workflow.
+- **📊 Complete Observability**<br/>
+Integrated Application Insights, Log Analytics, health checks, and APIM analytics for comprehensive monitoring, debugging, and performance optimization.
 
-- **AI Red Teaming Agent**<br/>
-Facilitates the creation of an AI Red Teaming Agent that can run batch automated scans for safety and security scans on your Agent solution to check your risk posture before deploying it into production.
+- **🔄 CI/CD Ready**<br/>
+Azure Developer CLI (azd) integration with GitHub Actions support, infrastructure as code with Bicep, and automated deployment pipelines.
+
+- **🛡️ Security & Compliance**<br/>
+Role-based access control (RBAC), managed identity for service-to-service authentication, network security, and enterprise security best practices.
+
+- **📈 Agent Evaluation & Testing**<br/>
+Built-in evaluation capabilities for agent performance monitoring and quality assurance during development and production.
+
+- **🔴 AI Red Teaming**<br/>
+Automated security and safety scanning capabilities to assess risk posture before production deployment.
 
 <br/>
 
@@ -60,6 +112,61 @@ Here is a screenshot showing the chatting web application with requests and resp
 Github Codespaces and Dev Containers both allow you to download and deploy the code for development. You can also continue with local development. Once you have selected your environment, [click here to launch the development and deployment guide](./docs/deployment.md)
 
 **After deployment, try these [sample questions](./docs/sample_questions.md) to test your agent.**
+
+## API Endpoints
+
+### 🔗 APIM Gateway Endpoints
+
+Your deployed solution provides the following API endpoints through Azure API Management:
+
+#### **Base URL**: `https://apim-{resourceToken}.azure-api.net`
+
+| Endpoint | Method | Description | Authentication |
+|----------|---------|-------------|----------------|
+| `/aiagent/health` | GET | Health check endpoint | Subscription Key |
+| `/aiagent/chat` | POST | Main chat interface with AI agent | Subscription Key |
+| `/aiagent/` | GET | Web interface (if enabled) | Subscription Key |
+
+#### **Authentication**
+All API calls require the `Ocp-Apim-Subscription-Key` header with your subscription key.
+
+#### **Rate Limits**
+- **Per Minute**: 100 requests
+- **Per Hour**: 1000 requests
+
+#### **Example Usage**
+
+```bash
+# Health Check
+curl -X GET "https://apim-{resourceToken}.azure-api.net/aiagent/health" \
+  -H "Ocp-Apim-Subscription-Key: YOUR_SUBSCRIPTION_KEY"
+
+# Chat Request
+curl -X POST "https://apim-{resourceToken}.azure-api.net/aiagent/chat" \
+  -H "Ocp-Apim-Subscription-Key: YOUR_SUBSCRIPTION_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "message": "What products do you offer?",
+    "thread_id": "optional-thread-id"
+  }'
+```
+
+#### **Response Format**
+```json
+{
+  "response": "AI-generated response with search context",
+  "agent_id": "agent-template-assistant",
+  "thread_id": "conversation-thread-id",
+  "citations": ["source1.md", "source2.json"]
+}
+```
+
+### 🎯 Getting Your Subscription Key
+
+1. Navigate to the **Azure Portal** → **API Management** → `apim-{resourceToken}`
+2. Go to **Subscriptions** in the left menu
+3. Find your subscription and click **Show/hide keys**
+4. Copy the **Primary key** for API authentication
 
 
 ## Other Features
@@ -100,6 +207,8 @@ The majority of the Azure resources used in this infrastructure are on usage-bas
 
 You can try the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator) for the resources:
 
+- **Azure API Management**: Developer tier. [Pricing](https://azure.microsoft.com/pricing/details/api-management/)
+- **Azure AI Search**: Basic tier with semantic search (free). [Pricing](https://azure.microsoft.com/pricing/details/search/)
 - **Azure AI Foundry**: Free tier. [Pricing](https://azure.microsoft.com/pricing/details/ai-studio/)  
 - **Azure Storage Account**: Standard tier, LRS. Pricing is based on storage and operations. [Pricing](https://azure.microsoft.com/pricing/details/storage/blobs/)  
 - **Azure AI Services**: S0 tier, defaults to gpt-4o-mini. Pricing is based on token count. [Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)  
@@ -128,18 +237,19 @@ For a more comprehensive list of best practices and security recommendations for
 
 ### Resources
 
-This template creates everything you need to get started with Azure AI Foundry:
+This template creates a complete enterprise AI platform with the following Azure resources:
 
-| Resource | Description |
-|----------|-------------|
-| [Azure AI Project](https://learn.microsoft.com/azure/ai-studio/how-to/create-projects) | Provides a collaborative workspace for AI development with access to models, data, and compute resources |
-| [Azure OpenAI Service](https://learn.microsoft.com/azure/ai-services/openai/) | Powers the AI agents for conversational AI and intelligent search capabilities. Default models deployed are gpt-4o-mini, but any Azure AI models can be specified per the [documentation](docs/deploy_customization.md#customizing-model-deployments) |
-| [Azure Container Apps](https://learn.microsoft.com/azure/container-apps/) | Hosts and scales the web application with serverless containers |
-| [Azure Container Registry](https://learn.microsoft.com/azure/container-registry/) | Stores and manages container images for secure deployment |
-| [Storage Account](https://learn.microsoft.com/azure/storage/blobs/) | Provides blob storage for application data and file uploads |
-| [AI Search Service](https://learn.microsoft.com/azure/search/) | *Optional* - Enables hybrid search capabilities combining semantic and vector search |
-| [Application Insights](https://learn.microsoft.com/azure/azure-monitor/app/app-insights-overview) | *Optional* - Provides application performance monitoring, logging, and telemetry for debugging and optimization |
-| [Log Analytics Workspace](https://learn.microsoft.com/azure/azure-monitor/logs/log-analytics-workspace-overview) | *Optional* - Collects and analyzes telemetry data for monitoring and troubleshooting |
+| Resource | Description | Key Features |
+|----------|-------------|--------------|
+| [Azure API Management](https://learn.microsoft.com/azure/api-management/) | **Enterprise API Gateway** - Provides secure API access with authentication, rate limiting, and monitoring | • Subscription key authentication<br/>• Rate limiting (100/min, 1000/hour)<br/>• Request/response transformation<br/>• Developer portal |
+| [Azure AI Project](https://learn.microsoft.com/azure/ai-studio/how-to/create-projects) | **AI Development Hub** - Collaborative workspace for AI development with access to models, data, and compute resources | • Model deployment management<br/>• Agent orchestration<br/>• Connection management |
+| [Azure AI Search](https://learn.microsoft.com/azure/search/) | **Intelligent Search Service** - Provides semantic search, vector search, and hybrid search capabilities for RAG | • Semantic search (free tier)<br/>• Vector embeddings<br/>• Full-text search<br/>• Index management |
+| [Azure OpenAI Service](https://learn.microsoft.com/azure/ai-services/openai/) | **AI Model Hosting** - Powers the AI agents with GPT-4o-mini and text-embedding-3-small models | • GPT-4o-mini for chat completion<br/>• text-embedding-3-small for vectors<br/>• Customizable model capacity |
+| [Azure Container Apps](https://learn.microsoft.com/azure/container-apps/) | **Scalable Backend** - Hosts and scales the FastAPI web application with serverless containers | • Auto-scaling<br/>• Managed identity<br/>• Private networking<br/>• Health monitoring |
+| [Azure Container Registry](https://learn.microsoft.com/azure/container-registry/) | **Container Management** - Stores and manages container images for secure deployment | • Private registry<br/>• Image scanning<br/>• Geo-replication support |
+| [Storage Account](https://learn.microsoft.com/azure/storage/blobs/) | **Data Storage** - Provides blob storage for application data, file uploads, and AI model artifacts | • Blob storage<br/>• File shares<br/>• Queue storage<br/>• Table storage |
+| [Application Insights](https://learn.microsoft.com/azure/azure-monitor/app/app-insights-overview) | **APM & Monitoring** - Application performance monitoring, logging, and telemetry for debugging | • Request tracing<br/>• Performance metrics<br/>• Error tracking<br/>• Custom telemetry |
+| [Log Analytics Workspace](https://learn.microsoft.com/azure/azure-monitor/logs/log-analytics-workspace-overview) | **Centralized Logging** - Collects and analyzes telemetry data for monitoring and troubleshooting | • Centralized logging<br/>• Query capabilities (KQL)<br/>• Alerting<br/>• Dashboard integration |
 
 ## Troubleshooting
 
@@ -157,6 +267,26 @@ This template creates everything you need to get started with Azure AI Foundry:
 
 - Console traces in ACA can be found in the Azure Portal, but they may be unreliable. Use Python’s logging with INFO level, and adjust Azure HTTP logging to WARNING.
 - Once your ACA is deployed, utilize the browser debugger (F12) and clear cache (CTRL+SHIFT+R). This can help debug the frontend for better traceability.
+
+#### Azure API Management
+
+- **Subscription Key Issues**: If you receive 401 errors, verify your subscription key is correct and included in the `Ocp-Apim-Subscription-Key` header. You can find your subscription key in the Azure Portal under API Management → Subscriptions.
+
+- **Rate Limiting**: If you receive 429 errors, you've exceeded the rate limits (100/min or 1000/hour). Wait for the rate limit window to reset or contact your administrator to increase limits.
+
+- **APIM Gateway Errors**: Check the APIM Analytics in Azure Portal for request logs and error details. Verify that the backend Container App is healthy by testing the direct Container App URL.
+
+- **Subscription Management**: If you need additional subscriptions or different rate limits, navigate to the APIM Developer Portal or Azure Portal to manage subscriptions and products.
+
+#### Azure AI Search
+
+- **Search Service Not Available**: Verify that `USE_AZURE_AI_SEARCH_SERVICE=true` environment variable is set and that the search service has been deployed successfully. Check the deployment logs for any search service provisioning errors.
+
+- **Index Not Found**: Ensure your search index has been created and populated. Check the search service in Azure Portal and verify the index exists with the expected schema.
+
+- **Search Performance**: If search responses are slow, check the search service tier and consider upgrading from Basic to Standard for better performance. Monitor search service metrics in Azure Portal.
+
+- **Vector Search Issues**: Verify that embeddings are being generated correctly and that the vector fields are properly configured in your search index schema.
 
 #### Agents
 
@@ -179,5 +309,6 @@ You acknowledge that the Software and Microsoft Products and Services (1) are no
 You acknowledge the Software is not subject to SOC 1 and SOC 2 compliance audits. No Microsoft technology, nor any of its component technologies, including the Software, is intended or made available as a substitute for the professional advice, opinion, or judgement of a certified financial services professional. Do not use the Software to replace, substitute, or provide professional financial advice or judgment.  
 
 BY ACCESSING OR USING THE SOFTWARE, YOU ACKNOWLEDGE THAT THE SOFTWARE IS NOT DESIGNED OR INTENDED TO SUPPORT ANY USE IN WHICH A SERVICE INTERRUPTION, DEFECT, ERROR, OR OTHER FAILURE OF THE SOFTWARE COULD RESULT IN THE DEATH OR SERIOUS BODILY INJURY OF ANY PERSON OR IN PHYSICAL OR ENVIRONMENTAL DAMAGE (COLLECTIVELY, “HIGH-RISK USE”), AND THAT YOU WILL ENSURE THAT, IN THE EVENT OF ANY INTERRUPTION, DEFECT, ERROR, OR OTHER FAILURE OF THE SOFTWARE, THE SAFETY OF PEOPLE, PROPERTY, AND THE ENVIRONMENT ARE NOT REDUCED BELOW A LEVEL THAT IS REASONABLY, APPROPRIATE, AND LEGAL, WHETHER IN GENERAL OR IN A SPECIFIC INDUSTRY. BY ACCESSING THE SOFTWARE, YOU FURTHER ACKNOWLEDGE THAT YOUR HIGH-RISK USE OF THE SOFTWARE IS AT YOUR OWN RISK.
-#   g e t - s t a r t e d - w i t h - a i - a g e n t s - w i t h - a p i m  
+#   g e t - s t a r t e d - w i t h - a i - a g e n t s - w i t h - a p i m 
+ 
  

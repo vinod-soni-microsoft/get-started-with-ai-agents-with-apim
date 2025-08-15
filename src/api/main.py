@@ -10,7 +10,7 @@ from azure.identity import DefaultAzureCredential
 import fastapi
 from fastapi.staticfiles import StaticFiles
 from fastapi import Request
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, HTMLResponse
 from dotenv import load_dotenv
 
 from logging_config import configure_logging
@@ -119,12 +119,46 @@ def create_app():
     app.mount("/static", StaticFiles(directory=directory), name="static")
     
     # Mount React static files
-    # Uncomment the following lines if you have a React frontend
-    # react_directory = os.path.join(os.path.dirname(__file__), "static/react")
-    # app.mount("/static/react", StaticFiles(directory=react_directory), name="react")
+    react_directory = os.path.join(os.path.dirname(__file__), "static/react")
+    if os.path.exists(react_directory):
+        app.mount("/assets", StaticFiles(directory=os.path.join(react_directory, "assets")), name="react-assets")
 
     from . import routes  # Import routes
     app.include_router(routes.router)
+
+    # Serve React app for all other routes (SPA fallback)
+    @app.get("/", response_class=HTMLResponse)
+    @app.get("/{full_path:path}", response_class=HTMLResponse)
+    async def serve_react_app(full_path: str = ""):
+        """Serve the React app for all routes not handled by the API"""
+        react_index_path = os.path.join(react_directory, "index.html")
+        if os.path.exists(react_index_path):
+            with open(react_index_path, "r", encoding="utf-8") as f:
+                html_content = f.read()
+            return HTMLResponse(content=html_content)
+        else:
+            # Fallback if React build doesn't exist
+            return HTMLResponse(content="""
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>AI Agents</title>
+            </head>
+            <body>
+                <div id="react-root">
+                    <h1>AI Agents API</h1>
+                    <p>React frontend not built. Please run 'pnpm build' in the frontend directory.</p>
+                    <p>API endpoints are available at:</p>
+                    <ul>
+                        <li><a href="/health">/health</a> - Health check</li>
+                        <li><a href="/agent">/agent</a> - Agent details</li>
+                        <li>/chat - Chat endpoint (POST)</li>
+                        <li>/chat/history - Chat history (GET)</li>
+                    </ul>
+                </div>
+            </body>
+            </html>
+            """)
 
     # Global exception handler for any unhandled exceptions
     @app.exception_handler(Exception)

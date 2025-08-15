@@ -23,6 +23,7 @@ WORKDIR /code/frontend
 RUN pnpm install \
     && pnpm build
 
+# The build output is already in the correct location: /code/api/static/react
 
 RUN apt-get purge -y krb5-user libkrb5-3 libkrb5support0 libgssapi-krb5-2
 

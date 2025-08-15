@@ -51,6 +51,19 @@ param logAnalyticsWorkspaceName string = ''
 @description('Id of the user or app to assign application roles')
 param principalId string = ''
 
+// APIM parameters
+@description('The Azure API Management service name. If omitted will be generated')
+param apimServiceName string = ''
+@description('The publisher name for API Management')
+param apimPublisherName string = 'AI Agents Publisher'
+@description('The publisher email for API Management')
+param apimPublisherEmail string = 'admin@example.com'
+@description('The SKU of the API Management service')
+@allowed(['Developer', 'Standard', 'Premium'])
+param apimSku string = 'Developer'
+@description('The instance size of the API Management service')
+param apimSkuCount int = 1
+
 // Chat completion model
 @description('Format of the chat model to deploy')
 @allowed(['Microsoft', 'OpenAI'])
@@ -108,6 +121,7 @@ param useApplicationInsights bool = true
 @description('Do we want to use the Azure AI Search')
 param useSearchService bool = false
 
+// Force redeploy for Azure AI Search - timestamp: 2025-08-15T18:35:00Z
 @description('Do we want to use the Azure Monitor tracing')
 param enableAzureMonitorTracing bool = false
 
@@ -204,9 +218,25 @@ module ai 'core/host/ai-environment.bicep' = if (empty(azureExistingAIProjectRes
   }
 }
 
+// Deploy standalone search service when using existing AI project
+module searchService 'core/search/search-services.bicep' = if (useSearchService && !empty(azureExistingAIProjectResourceId)) {
+  name: 'searchService'
+  scope: rg
+  params: {
+    name: resolvedSearchServiceName
+    location: location
+    tags: tags
+    projectName: split(azureExistingAIProjectResourceId, '/')[10]
+    serviceName: split(azureExistingAIProjectResourceId, '/')[8]
+    semanticSearch: 'free'
+  }
+}
+
 var searchServiceEndpoint = !useSearchService
   ? ''
-  : empty(azureExistingAIProjectResourceId) ? ai!.outputs.searchServiceEndpoint : ''
+  : empty(azureExistingAIProjectResourceId) 
+    ? ai!.outputs.searchServiceEndpoint 
+    : searchService!.outputs.endpoint
 
 // If bringing an existing AI project, set up the log analytics workspace here
 module logAnalytics 'core/monitor/loganalytics.bicep' = if (!empty(azureExistingAIProjectResourceId)) {
@@ -299,7 +329,21 @@ module api 'api.bicep' = {
   }
 }
 
-
+// Azure API Management
+module apim 'core/gateway/apim.bicep' = {
+  name: 'apim'
+  scope: rg
+  params: {
+    name: !empty(apimServiceName) ? apimServiceName : '${abbrs.apiManagementService}${resourceToken}'
+    location: location
+    tags: tags
+    publisherName: apimPublisherName
+    publisherEmail: apimPublisherEmail
+    sku: apimSku
+    skuCount: apimSkuCount
+    backendApiUri: api.outputs.SERVICE_API_URI
+  }
+}
 
 module userRoleAzureAIDeveloper 'core/security/role.bicep' = {
   name: 'user-role-azureai-developer'
@@ -439,11 +483,23 @@ output AZURE_EXISTING_AIPROJECT_ENDPOINT string = projectEndpoint
 output ENABLE_AZURE_MONITOR_TRACING bool = enableAzureMonitorTracing
 output AZURE_TRACING_GEN_AI_CONTENT_RECORDING_ENABLED bool = azureTracingGenAIContentRecordingEnabled
 
+// APIM outputs
+output APIM_SERVICE_NAME string = apim.outputs.name
+output APIM_GATEWAY_URL string = apim.outputs.gateway_url
+output APIM_MANAGEMENT_URL string = apim.outputs.management_url
+output APIM_PORTAL_URL string = apim.outputs.portal_url
+output APIM_DEVELOPER_PORTAL_URL string = apim.outputs.developer_portal_url
+output APIM_SUBSCRIPTION_ID string = apim.outputs.subscription_id
+
 // Outputs required by azd for ACA
 output AZURE_CONTAINER_ENVIRONMENT_NAME string = containerApps.outputs.environmentName
 output SERVICE_API_IDENTITY_PRINCIPAL_ID string = api.outputs.SERVICE_API_IDENTITY_PRINCIPAL_ID
 output SERVICE_API_NAME string = api.outputs.SERVICE_API_NAME
 output SERVICE_API_URI string = api.outputs.SERVICE_API_URI
-output SERVICE_API_ENDPOINTS array = ['${api.outputs.SERVICE_API_URI}']
-output SEARCH_CONNECTION_ID string = ''
+output SERVICE_API_ENDPOINTS array = ['${apim.outputs.gateway_url}/aiagent']
+output SEARCH_CONNECTION_ID string = !useSearchService
+  ? ''
+  : empty(azureExistingAIProjectResourceId) 
+    ? ai!.outputs.searchConnectionId 
+    : searchService!.outputs.searchConnectionId
 output AZURE_CONTAINER_REGISTRY_ENDPOINT string = containerApps.outputs.registryLoginServer

@@ -53,6 +53,7 @@ from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from typing import Optional
 import secrets
+import datetime
 
 security = HTTPBasic()
 
@@ -77,6 +78,17 @@ def authenticate(credentials: Optional[HTTPBasicCredentials] = Depends(security)
     return
 
 auth_dependency = Depends(authenticate) if basic_auth else None
+
+# Health check endpoint for APIM
+@router.get("/health")
+async def health_check():
+    """Health check endpoint for monitoring and load balancing"""
+    return JSONResponse({
+        "status": "healthy",
+        "timestamp": datetime.datetime.utcnow().isoformat() + "Z",
+        "service": "ai-agents-api",
+        "version": "1.0.0"
+    })
 
 
 def get_ai_project(request: Request) -> AIProjectClient:
