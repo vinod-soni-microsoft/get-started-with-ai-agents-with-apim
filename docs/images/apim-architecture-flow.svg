@@ -1,0 +1,197 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="clientGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e3f2fd;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#bbdefb;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="apimGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f3e5f5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e1bee7;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="containerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8f5e8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c8e6c9;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="aiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff3e0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffe0b2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="searchGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff8e1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffecb3;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="monitorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fce4ec;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f8bbd9;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="800" fill="#f8f9fa"/>
+  
+  <!-- Title -->
+  <text x="600" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#333">
+    Enterprise AI Agent with Azure API Management
+  </text>
+  
+  <!-- External Clients -->
+  <rect x="50" y="100" width="150" height="80" rx="10" fill="url(#clientGrad)" stroke="#1976d2" stroke-width="2"/>
+  <text x="125" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1565c0">External Clients</text>
+  <text x="125" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1565c0">• Mobile Apps</text>
+  <text x="125" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1565c0">• Web Apps</text>
+  <text x="125" y="175" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1565c0">• APIs</text>
+  
+  <!-- API Management -->
+  <rect x="300" y="80" width="200" height="120" rx="10" fill="url(#apimGrad)" stroke="#7b1fa2" stroke-width="3"/>
+  <text x="400" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#4a148c">Azure API Management</text>
+  <text x="400" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#4a148c">🔐 Subscription Key Auth</text>
+  <text x="400" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#4a148c">⚡ Rate Limiting (100/min)</text>
+  <text x="400" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#4a148c">🔄 Request Transformation</text>
+  <text x="400" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#4a148c">📊 Analytics & Monitoring</text>
+  <text x="400" y="185" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#4a148c">🛡️ Security Policies</text>
+  
+  <!-- Container Apps -->
+  <rect x="600" y="80" width="200" height="120" rx="10" fill="url(#containerGrad)" stroke="#2e7d32" stroke-width="2"/>
+  <text x="700" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1b5e20">Container Apps</text>
+  <text x="700" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1b5e20">FastAPI Backend</text>
+  <text x="700" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1b5e20">🔄 Auto-scaling</text>
+  <text x="700" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1b5e20">🔒 Managed Identity</text>
+  <text x="700" y="175" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1b5e20">🌐 React Frontend</text>
+  <text x="700" y="190" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#1b5e20">📦 Containerized</text>
+  
+  <!-- Azure AI Services -->
+  <rect x="450" y="280" width="180" height="100" rx="10" fill="url(#aiGrad)" stroke="#f57c00" stroke-width="2"/>
+  <text x="540" y="305" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#e65100">Azure AI Services</text>
+  <text x="540" y="325" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#e65100">GPT-4o-mini</text>
+  <text x="540" y="345" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#e65100">🤖 Chat Completion</text>
+  <text x="540" y="360" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#e65100">🧠 Text Generation</text>
+  <text x="540" y="375" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#e65100">📝 Context-aware Responses</text>
+  
+  <!-- Azure AI Search -->
+  <rect x="700" y="280" width="180" height="100" rx="10" fill="url(#searchGrad)" stroke="#ffa000" stroke-width="2"/>
+  <text x="790" y="305" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ff6f00">Azure AI Search</text>
+  <text x="790" y="325" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ff6f00">RAG Knowledge Base</text>
+  <text x="790" y="345" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#ff6f00">🔍 Semantic Search</text>
+  <text x="790" y="360" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#ff6f00">🎯 Vector Embeddings</text>
+  <text x="790" y="375" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#ff6f00">📄 Document Retrieval</text>
+  
+  <!-- Application Insights -->
+  <rect x="950" y="80" width="180" height="120" rx="10" fill="url(#monitorGrad)" stroke="#d81b60" stroke-width="2"/>
+  <text x="1040" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ad1457">Application Insights</text>
+  <text x="1040" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#ad1457">📊 Request Tracing</text>
+  <text x="1040" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#ad1457">⚡ Performance Metrics</text>
+  <text x="1040" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#ad1457">🚨 Error Tracking</text>
+  <text x="1040" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#ad1457">📈 Analytics Dashboard</text>
+  <text x="1040" y="185" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#ad1457">🔔 Alerts & Monitoring</text>
+  
+  <!-- Flow arrows and labels -->
+  <!-- Client to APIM -->
+  <path d="M 200 140 L 290 140" stroke="#333" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="245" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#333">HTTPS + API Key</text>
+  
+  <!-- APIM to Container Apps -->
+  <path d="M 500 140 L 590 140" stroke="#333" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="545" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#333">Authenticated</text>
+  
+  <!-- Container Apps to AI Services -->
+  <path d="M 650 200 L 580 270" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="610" y="240" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#333">AI Query</text>
+  
+  <!-- Container Apps to AI Search -->
+  <path d="M 750 200 L 780 270" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="770" y="240" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#333">Search Context</text>
+  
+  <!-- APIM to Application Insights -->
+  <path d="M 500 120 L 940 120" stroke="#d81b60" stroke-width="2" fill="none" marker-end="url(#arrowhead)" stroke-dasharray="5,5"/>
+  <text x="720" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#d81b60">Telemetry</text>
+  
+  <!-- Container Apps to Application Insights -->
+  <path d="M 800 140 L 940 140" stroke="#d81b60" stroke-width="2" fill="none" marker-end="url(#arrowhead)" stroke-dasharray="5,5"/>
+  
+  <!-- Request Flow Steps -->
+  <rect x="50" y="450" width="1100" height="300" rx="10" fill="#ffffff" stroke="#ddd" stroke-width="1"/>
+  <text x="600" y="480" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#333">
+    Request Flow with APIM Integration
+  </text>
+  
+  <!-- Flow steps -->
+  <circle cx="100" cy="520" r="20" fill="#1976d2" stroke="#fff" stroke-width="2"/>
+  <text x="100" y="525" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">1</text>
+  <text x="100" y="550" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#333">Client Request</text>
+  <text x="100" y="570" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">HTTPS with</text>
+  <text x="100" y="585" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">API Key</text>
+  
+  <circle cx="280" cy="520" r="20" fill="#7b1fa2" stroke="#fff" stroke-width="2"/>
+  <text x="280" y="525" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">2</text>
+  <text x="280" y="550" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#333">APIM Gateway</text>
+  <text x="280" y="570" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Authentication</text>
+  <text x="280" y="585" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Rate Limiting</text>
+  
+  <circle cx="460" cy="520" r="20" fill="#2e7d32" stroke="#fff" stroke-width="2"/>
+  <text x="460" y="525" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">3</text>
+  <text x="460" y="550" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#333">FastAPI Processing</text>
+  <text x="460" y="570" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Route to</text>
+  <text x="460" y="585" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Container App</text>
+  
+  <circle cx="640" cy="520" r="20" fill="#ffa000" stroke="#fff" stroke-width="2"/>
+  <text x="640" y="525" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">4</text>
+  <text x="640" y="550" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#333">Knowledge Search</text>
+  <text x="640" y="570" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Query AI Search</text>
+  <text x="640" y="585" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">for Context</text>
+  
+  <circle cx="820" cy="520" r="20" fill="#f57c00" stroke="#fff" stroke-width="2"/>
+  <text x="820" y="525" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">5</text>
+  <text x="820" y="550" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#333">AI Generation</text>
+  <text x="820" y="570" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">GPT-4o-mini</text>
+  <text x="820" y="585" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Response</text>
+  
+  <circle cx="1000" cy="520" r="20" fill="#d81b60" stroke="#fff" stroke-width="2"/>
+  <text x="1000" y="525" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">6</text>
+  <text x="1000" y="550" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#333">Response & Monitoring</text>
+  <text x="1000" y="570" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">Return via APIM</text>
+  <text x="1000" y="585" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#666">+ Telemetry</text>
+  
+  <!-- Flow arrows between steps -->
+  <path d="M 120 520 L 260 520" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 300 520 L 440 520" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 480 520 L 620 520" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 660 520 L 800 520" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 840 520 L 980 520" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Performance metrics -->
+  <rect x="50" y="620" width="300" height="100" rx="5" fill="#f5f5f5" stroke="#ddd" stroke-width="1"/>
+  <text x="200" y="640" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">
+    Performance Metrics
+  </text>
+  <text x="70" y="660" font-family="Arial, sans-serif" font-size="11" fill="#666">• Rate Limit: 100 calls/min, 1000/hour</text>
+  <text x="70" y="675" font-family="Arial, sans-serif" font-size="11" fill="#666">• Response Time: 3-29ms (health)</text>
+  <text x="70" y="690" font-family="Arial, sans-serif" font-size="11" fill="#666">• AI Response: ~6.5s (chat)</text>
+  <text x="70" y="705" font-family="Arial, sans-serif" font-size="11" fill="#666">• Success Rate: 100%</text>
+  
+  <!-- Security features -->
+  <rect x="380" y="620" width="300" height="100" rx="5" fill="#f5f5f5" stroke="#ddd" stroke-width="1"/>
+  <text x="530" y="640" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">
+    Security Features
+  </text>
+  <text x="400" y="660" font-family="Arial, sans-serif" font-size="11" fill="#666">• Subscription Key Authentication</text>
+  <text x="400" y="675" font-family="Arial, sans-serif" font-size="11" fill="#666">• Managed Identity for Backend</text>
+  <text x="400" y="690" font-family="Arial, sans-serif" font-size="11" fill="#666">• HTTPS/TLS Encryption</text>
+  <text x="400" y="705" font-family="Arial, sans-serif" font-size="11" fill="#666">• RBAC & Network Security</text>
+  
+  <!-- Monitoring capabilities -->
+  <rect x="710" y="620" width="300" height="100" rx="5" fill="#f5f5f5" stroke="#ddd" stroke-width="1"/>
+  <text x="860" y="640" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">
+    Monitoring & Analytics
+  </text>
+  <text x="730" y="660" font-family="Arial, sans-serif" font-size="11" fill="#666">• Real-time Request Tracing</text>
+  <text x="730" y="675" font-family="Arial, sans-serif" font-size="11" fill="#666">• Performance Dashboards</text>
+  <text x="730" y="690" font-family="Arial, sans-serif" font-size="11" fill="#666">• Error Tracking & Alerts</text>
+  <text x="730" y="705" font-family="Arial, sans-serif" font-size="11" fill="#666">• Usage Analytics</text>
+  
+  <!-- Arrow marker definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+  </defs>
+</svg>

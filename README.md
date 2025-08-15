@@ -92,6 +92,12 @@ graph TB
 
 ![Architecture diagram showing the complete AI agent solution with APIM gateway, featuring external clients connecting through Azure API Management to a Container App backend, which integrates with Azure AI Services and Azure AI Search for intelligent responses.](docs/images/architecture.png)
 
+### Detailed APIM Integration Flow
+
+The following diagram shows the complete request flow with Azure API Management integration, including authentication, rate limiting, monitoring, and the step-by-step process:
+
+![Detailed APIM architecture flow diagram showing enterprise AI agent with Azure API Management integration, including request flow steps, security features, performance metrics, and monitoring capabilities.](docs/images/apim-architecture-flow.png)
+
 ### Request Flow
 
 1. **Client Request**
