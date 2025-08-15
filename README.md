@@ -1,12 +1,12 @@
 # AI Agent with Azure API Management & Azure AI Search
 
-This enterprise-ready solution deploys an AI-powered API gateway that combines Azure API Management, Azure AI Services, and Azure AI Search to create a production-grade conversational AI platform with enterprise security, rate limiting, and intelligentBY ACCESSING OR USING THE SOFTWARE, YOU ACKNOWLEDGE THAT THE SOFTWARE IS NOT DESIGNED OR INTENDED TO SUPPORT ANY USE IN WHICH A SERVICE INTERRUPTION, DEFECT, ERROR, OR OTHER FAILURE OF THE SOFTWARE COULD RESULT IN THE DEATH OR SERIOUS BODILY INJURY OF ANY PERSON OR IN PHYSICAL OR ENVIRONMENTAL DAMAGE (COLLECTIVELY, "HIGH-RISK USE"), AND THAT YOU WILL ENSURE THAT, IN THE EVENT OF ANY INTERRUPTION, DEFECT, ERROR, OR OTHER FAILURE OF THE SOFTWARE, THE SAFETY OF PEOPLE, PROPERTY, AND THE ENVIRONMENT ARE NOT REDUCED BELOW A LEVEL THAT IS REASONABLY, APPROPRIATE, AND LEGAL, WHETHER IN GENERAL OR IN A SPECIFIC INDUSTRY. BY ACCESSING THE SOFTWARE, YOU FURTHER ACKNOWLEDGE THAT YOUR HIGH-RISK USE OF THE SOFTWARE IS AT YOUR OWN RISK.knowledge retrieval.
+This enterprise-ready solution deploys an AI-powered API gateway that combines Azure API Management, Azure AI Services, and Azure AI Search to create a production-grade conversational AI platform with enterprise security, rate limiting, and intellBY ACCESSING OR USING THE SOFTWARE, YOU ACKNOWLEDGE THAT THE SOFTWARE IS NOT DESIGNED OR INTENDED TO SUPPORT ANY USE IN WHICH A SERVICE INTERRUPTION, DEFECT, ERROR, OR OTHER FAILURE OF THE SOFTWARE COULD RESULT IN THE DEATH OR SERIOUS BODILY INJURY OF ANY PERSON OR IN PHYSICAL OR ENVIRONMENTAL DAMAGE (COLLECTIVELY, "HIGH-RISK USE"), AND THAT YOU WILL ENSURE THAT, IN THE EVENT OF ANY INTERRUPTION, DEFECT, ERROR, OR OTHER FAILURE OF THE SOFTWARE, THE SAFETY OF PEOPLE, PROPERTY, AND THE ENVIRONMENT ARE NOT REDUCED BELOW A LEVEL THAT IS REASONABLY, APPROPRIATE, AND LEGAL, WHETHER IN GENERAL OR IN A SPECIFIC INDUSTRY. BY ACCESSING THE SOFTWARE, YOU FURTHER ACKNOWLEDGE THAT YOUR HIGH-RISK USE OF THE SOFTWARE IS AT YOUR OWN RISK.gent knowledge retrieval.
 
-<div style="text-align:center;">
+---
 
-[**SOLUTION OVERVIEW**](#solution-overview) \| [**ARCHITECTURE**](#architecture) \| [**GETTING STARTED**](#getting-started) \| [**API ENDPOINTS**](#api-endpoints) \| [**OTHER FEATURES**](#other-features) \| [**RESOURCE CLEAN-UP**](#resource-clean-up) \| [**GUIDANCE**](#guidance) \| [**TROUBLESHOOTING**](#troubleshooting)
+**[SOLUTION OVERVIEW](#solution-overview)** | **[ARCHITECTURE](#architecture)** | **[GETTING STARTED](#getting-started)** | **[API ENDPOINTS](#api-endpoints)** | **[OTHER FEATURES](#other-features)** | **[RESOURCE CLEAN-UP](#resource-clean-up)** | **[GUIDANCE](#guidance)** | **[TROUBLESHOOTING](#troubleshooting)**
 
-</div>
+---
 
 ## Solution Overview
 
@@ -34,26 +34,19 @@ The solution leverages **Azure AI Agent service** integrated with **Azure AI Sea
 
 ### Enterprise API Gateway Architecture
 
-```
-┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
-│   External      │    │   Azure API      │    │   Container     │
-│   Clients       │───▶│   Management     │───▶│   App (FastAPI) │
-│                 │    │   (Gateway)      │    │                 │
-└─────────────────┘    └──────────────────┘    └─────────────────┘
-                              │                          │
-                              ▼                          ▼
-                       ┌─────────────┐           ┌─────────────┐
-                       │ Rate Limits │           │ Azure AI    │
-                       │ • 100/min   │           │ Services    │
-                       │ • 1000/hour │           │ (GPT-4o)    │
-                       └─────────────┘           └─────────────┘
-                                                         │
-                                                         ▼
-                                                ┌─────────────┐
-                                                │ Azure AI    │
-                                                │ Search      │
-                                                │ (RAG Data)  │
-                                                └─────────────┘
+```mermaid
+graph TB
+    A[External Clients] --> B[Azure API Management]
+    B --> C[Container App - FastAPI]
+    B --> D[Rate Limits<br/>• 100/min<br/>• 1000/hour]
+    C --> E[Azure AI Services<br/>GPT-4o-mini]
+    C --> F[Azure AI Search<br/>RAG Data]
+    
+    style A fill:#e1f5fe
+    style B fill:#f3e5f5
+    style C fill:#e8f5e8
+    style E fill:#fff3e0
+    style F fill:#fff8e1
 ```
 
 ![Architecture diagram showing the complete AI agent solution with APIM gateway, featuring external clients connecting through Azure API Management to a Container App backend, which integrates with Azure AI Services and Azure AI Search for intelligent responses.](docs/images/architecture.png)
@@ -93,10 +86,10 @@ Role-based access control (RBAC), managed identity for service-to-service authen
 - **📈 Agent Evaluation & Testing**<br/>
 Built-in evaluation capabilities for agent performance monitoring and quality assurance during development and production.
 
-- **🔴 AI Red Teaming**<br/>
-Automated security and safety scanning capabilities to assess risk posture before production deployment.
+- **🔴 AI Red Teaming**  
+  Automated security and safety scanning capabilities to assess risk posture before production deployment.
 
-<br/>
+---
 
 Here is a screenshot showing the chatting web application with requests and responses between the system and the user:
 
@@ -106,10 +99,11 @@ Here is a screenshot showing the chatting web application with requests and resp
 
 ### Quick Deploy
 
-| [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Azure-Samples/get-started-with-ai-agents) | [![Open in Dev Containers](https://img.shields.io/static/v1?style=for-the-badge&label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/Azure-Samples/get-started-with-ai-agents) |
+| **GitHub Codespaces** | **Dev Containers** |
 |---|---|
+| [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Azure-Samples/get-started-with-ai-agents) | [![Open in Dev Containers](https://img.shields.io/static/v1?style=for-the-badge&label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/Azure-Samples/get-started-with-ai-agents) |
 
-Github Codespaces and Dev Containers both allow you to download and deploy the code for development. You can also continue with local development. Once you have selected your environment, [click here to launch the development and deployment guide](./docs/deployment.md)
+GitHub Codespaces and Dev Containers both allow you to download and deploy the code for development. You can also continue with local development. Once you have selected your environment, [click here to launch the development and deployment guide](./docs/deployment.md)
 
 **After deployment, try these [sample questions](./docs/sample_questions.md) to test your agent.**
 
@@ -170,6 +164,7 @@ curl -X POST "https://apim-{resourceToken}.azure-api.net/aiagent/chat" \
 
 
 ## Other Features
+
 Once you have the agents and the web app working, you are encouraged to try one of the following:
 
 - **[Tracing and Monitoring](./docs/other_features.md#tracing-and-monitoring)** - View console logs in Azure portal and App Insights tracing in Azure AI Foundry for debugging and performance monitoring.
@@ -187,16 +182,16 @@ To prevent incurring unnecessary charges, it's important to clean up your Azure 
   - If the application is no longer needed or you have transitioned to a different project or environment.
   - When you have completed development and are ready to decommission the application.
 
-- **Deleting Resources:**
+- **Deleting Resources:**  
   To delete all associated resources and shut down the application, execute the following command:
   
-    ```bash
-    azd down
-    ```
+  ```bash
+  azd down
+  ```
 
-    Please note that this process may take up to 20 minutes to complete.
+  Please note that this process may take up to 20 minutes to complete.
 
-⚠️ Alternatively, you can delete the resource group directly from the Azure Portal to clean up resources.
+⚠️ **Alternative:** You can delete the resource group directly from the Azure Portal to clean up resources.
 
 ## Guidance
 
