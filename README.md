@@ -2,11 +2,16 @@
 
 This enterprise-ready solution deploys an AI-powered API gateway that combines Azure API Management, Azure AI Services, and Azure AI Search to create a production-grade conversational AI platform with enterprise security, rate limiting, and intelligent knowledge retrieval.
 
----
+## Table of Contents
 
-**[SOLUTION OVERVIEW](#solution-overview)** | **[ARCHITECTURE](#architecture)** | **[GETTING STARTED](#getting-started)** | **[API ENDPOINTS](#api-endpoints)** | **[OTHER FEATURES](#other-features)** | **[RESOURCE CLEAN-UP](#resource-clean-up)** | **[GUIDANCE](#guidance)** | **[TROUBLESHOOTING](#troubleshooting)**
-
----
+- [Solution Overview](#solution-overview)
+- [Architecture](#architecture)
+- [Getting Started](#getting-started)
+- [API Endpoints](#api-endpoints)
+- [Other Features](#other-features)
+- [Resource Clean-up](#resource-clean-up)
+- [Guidance](#guidance)
+- [Troubleshooting](#troubleshooting)
 
 ## Solution Overview
 
@@ -101,7 +106,7 @@ Here is a screenshot showing the chatting web application with requests and resp
 
 | **GitHub Codespaces** | **Dev Containers** |
 |---|---|
-| [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Azure-Samples/get-started-with-ai-agents) | [![Open in Dev Containers](https://img.shields.io/static/v1?style=for-the-badge&label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/Azure-Samples/get-started-with-ai-agents) |
+| [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/vinod-soni-microsoft/get-started-with-ai-agents-with-apim) | [![Open in Dev Containers](https://img.shields.io/static/v1?style=for-the-badge&label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/vinod-soni-microsoft/get-started-with-ai-agents-with-apim) |
 
 GitHub Codespaces and Dev Containers both allow you to download and deploy the code for development. You can also continue with local development. Once you have selected your environment, [click here to launch the development and deployment guide](./docs/deployment.md)
 
