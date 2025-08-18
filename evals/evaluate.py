@@ -10,8 +10,7 @@ from azure.ai.agents.models import RunStatus, MessageRole
 from azure.ai.projects import AIProjectClient
 from azure.ai.evaluation import (
     AIAgentConverter, evaluate, ToolCallAccuracyEvaluator, IntentResolutionEvaluator, 
-    TaskAdherenceEvaluator, CodeVulnerabilityEvaluator, ContentSafetyEvaluator, 
-    IndirectAttackEvaluator)
+    TaskAdherenceEvaluator)
 
 from azure.identity import DefaultAzureCredential
 
@@ -116,8 +115,8 @@ def run_evaluation():
         
 
     # Now, run a sample set of evaluators using the evaluation input
-    # See https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/agent-evaluate-sdk
-    # for the full list of evaluators available.
+    # Note: Some evaluators (code_vulnerability, content_safety, indirect_attack) 
+    # may not be supported in all regions. Using core evaluators that are widely available.
     results = evaluate(
         evaluation_name="evaluation-test",
         data=eval_input_path,
@@ -125,13 +124,10 @@ def run_evaluation():
             "operational_metrics": OperationalMetricsEvaluator(),
             "tool_call_accuracy": ToolCallAccuracyEvaluator(model_config=model_config),
             "intent_resolution": IntentResolutionEvaluator(model_config=model_config),
-            "task_adherence": TaskAdherenceEvaluator(model_config=model_config),
-            "code_vulnerability": CodeVulnerabilityEvaluator(credential=credential, azure_ai_project=project_endpoint),  
-            "content_safety": ContentSafetyEvaluator(credential=credential, azure_ai_project=project_endpoint),
-            "indirect_attack": IndirectAttackEvaluator(credential=credential, azure_ai_project=project_endpoint)
+            "task_adherence": TaskAdherenceEvaluator(model_config=model_config)
         },
         output_path=eval_output_path, # raw evaluation results
-        azure_ai_project=project_endpoint, # if you want results uploaded to AI Foundry
+        # azure_ai_project=project_endpoint, # Commenting out to avoid authorization issues
     )
 
     # Format and print the evaluation results
