@@ -46,7 +46,7 @@ echo "🔑 Retrieving APIM subscription key..."
 APIM_SUBSCRIPTION_KEY=$(az apim subscription list-secrets \
     --resource-group "$RESOURCE_GROUP" \
     --service-name "$APIM_SERVICE_NAME" \
-    --subscription-id "default-subscription" \
+    --name "default-subscription" \
     --query "primaryKey" -o tsv)
 
 if [ -z "$APIM_SUBSCRIPTION_KEY" ]; then
