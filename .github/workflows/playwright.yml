@@ -1,0 +1,60 @@
+name: Playwright E2E
+
+on:
+  push:
+    branches: [ main, playwright-demo ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install frontend dependencies
+        run: npm ci --prefix src/frontend
+
+      - name: Install Microsoft Edge (for Playwright msedge channel)
+        run: |
+          sudo mkdir -p /etc/apt/keyrings
+          curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor -o /etc/apt/keyrings/microsoft.gpg
+          echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/edge stable main" | sudo tee /etc/apt/sources.list.d/microsoft-edge.list
+          sudo apt-get update
+          sudo apt-get install -y microsoft-edge-stable
+
+      - name: Install Playwright browsers
+        run: |
+          npx playwright install --with-deps
+          # Install Playwright-managed msedge distribution in case system package isn't used by Playwright
+          npx playwright install msedge
+
+      - name: Start frontend dev server
+        run: npm --prefix src/frontend run dev &
+
+      - name: Wait for dev server
+        run: |
+          for i in {1..30}; do
+            if curl -sSf http://localhost:5173/ >/dev/null; then
+              echo "dev server up" && break
+            fi
+            sleep 2
+          done
+
+      - name: Run Playwright tests
+        run: npx playwright test --config=src/frontend/playwright.config.ts
+
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report
