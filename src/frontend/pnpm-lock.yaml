@@ -40,7 +40,7 @@ importers:
         version: 9.1.24
       '@vitejs/plugin-react':
         specifier: 4.4.1
-        version: 4.4.1(vite@6.3.3(@types/node@22.14.1))
+        version: 4.4.1(vite@6.3.4(@types/node@22.14.1))
       clsx:
         specifier: 2.1.1
         version: 2.1.1
@@ -90,8 +90,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       vite:
-        specifier: 6.3.3
-        version: 6.3.3(@types/node@22.14.1)
+        specifier: 6.3.4
+        version: 6.3.4(@types/node@22.14.1)
     devDependencies:
       '@types/node':
         specifier: 22.14.1
@@ -1230,6 +1230,7 @@ packages:
 
   '@fluentui/react-virtualizer@9.0.0-alpha.92':
     resolution: {integrity: sha512-hT7xwMXyXco/tQRdZgPZS3O8DjJnYIKc9EnZ2qQMYrv0PEiee01WwH2NVFbhkn2utD9TZlE3Gu0j25fSYICBxQ==}
+    deprecated: Deprecating react-virtualizer in Fluent core - migrating to fluentui-contrib repo for stable release
     peerDependencies:
       '@types/react': '>=16.14.0 <19.0.0'
       '@types/react-dom': '>=16.9.0 <19.0.0'
@@ -2230,8 +2231,8 @@ packages:
   vfile@6.0.3:
     resolution: {integrity: sha512-KzIbH/9tXat2u30jf+smMwFCsno4wHVdNmzFyL+T/L3UGqqk6JKfVqOFOZEpZSHADH1k40ab6NUIXZq422ov3Q==}
 
-  vite@6.3.3:
-    resolution: {integrity: sha512-5nXH+QsELbFKhsEfWLkHrvgRpTdGJzqOZ+utSdmPTvwHmvU6ITTm3xx+mRusihkcI8GeC7lCDyn3kDtiki9scw==}
+  vite@6.3.4:
+    resolution: {integrity: sha512-BiReIiMS2fyFqbqNT/Qqt4CVITDU9M9vE+DKcVAsB+ZV0wvTKd+3hMbkpxz1b+NmEDMegpVbisKiAZOnvO92Sw==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
     hasBin: true
     peerDependencies:
@@ -4434,14 +4435,14 @@ snapshots:
 
   '@ungap/structured-clone@1.3.0': {}
 
-  '@vitejs/plugin-react@4.4.1(vite@6.3.3(@types/node@22.14.1))':
+  '@vitejs/plugin-react@4.4.1(vite@6.3.4(@types/node@22.14.1))':
     dependencies:
       '@babel/core': 7.26.10
       '@babel/plugin-transform-react-jsx-self': 7.25.9(@babel/core@7.26.10)
       '@babel/plugin-transform-react-jsx-source': 7.25.9(@babel/core@7.26.10)
       '@types/babel__core': 7.20.5
       react-refresh: 0.17.0
-      vite: 6.3.3(@types/node@22.14.1)
+      vite: 6.3.4(@types/node@22.14.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -5517,7 +5518,7 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.2
 
-  vite@6.3.3(@types/node@22.14.1):
+  vite@6.3.4(@types/node@22.14.1):
     dependencies:
       esbuild: 0.25.3
       fdir: 6.4.4(picomatch@4.0.2)
